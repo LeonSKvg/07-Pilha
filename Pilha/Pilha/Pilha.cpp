@@ -59,7 +59,7 @@ void menu()
 void inicializar()
 {
 
-	// se a lista j· possuir elementos
+	// se a lista j√° possuir elementos
 	// libera a memoria ocupada
 	NO* aux = topo;
 	while (aux != NULL) {
@@ -73,27 +73,35 @@ void inicializar()
 
 }
 
-
 void push()
 {
 	// aloca memoria dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
 	if (novo == NULL)
 	{
+		cout << "Erro ao alocar memoria!\n";
 		return;
 	}
 
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
-	novo->prox = NULL;
 
+	novo->prox = topo; 
+	topo = novo;        
 
+	cout << "O elemento esta na pilha.\n";
 }
 
 void pop()
 {
+	if (topo == NULL) {
+		cout << "a pilha esta vazia\n";
+		return;
+	}
 
-	
+	NO* paraRemover = topo;
+	cout << "Elemento removido: " << paraRemover->valor << endl;
 
+	topo = topo->prox;
+	free(paraRemover);
 }
-
